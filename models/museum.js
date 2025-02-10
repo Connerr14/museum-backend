@@ -4,15 +4,15 @@ import mongoose, { Mongoose } from "mongoose";
 const museumSchema = mongoose.Schema ({
     name: {
         type: String, 
-        require: true
+        required: true
     },
     admissionPrice: {
         type: Number, 
-        require: true
+        required: true
     },
     location: {
         type: String, 
-        require: true
+        required: true
     }
 });
 
