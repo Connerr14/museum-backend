@@ -1,6 +1,8 @@
 import express from "express";
 import Museum  from "../models/museum.js";
 
+// Proper
+
 // Create a express router object
 const router = express.Router();
 

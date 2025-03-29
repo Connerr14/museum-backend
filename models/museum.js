@@ -13,7 +13,21 @@ const museumSchema = mongoose.Schema ({
     location: {
         type: String, 
         required: true
-    }
+    },
+    tours: [{
+        tourName: {
+            type: String,
+            required: true
+        },
+        tourGuide: {
+            type: String,
+            required: true
+        },
+        duration: {
+            type: Number,
+            required: true
+        }
+    }]
 });
 
 // Making the museum interface accessible outside the file
