@@ -24,8 +24,8 @@ mongoose.connect(process.env.DB, {})
 // Cors: allow angular client http access
 app.use(cors({
     origin: [
-        'http://localhost:4200', // Local development URL
-        'https://museum-backend-llx2.vercel.app' // Production frontend URL
+        'http://localhost:4200',
+        'https://museum-backend-llx2.vercel.app'
     ],
     methods: "GET,POST,PUT,DELETE,HEAD,OPTIONS", 
     credentials: false, 
