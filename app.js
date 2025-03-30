@@ -6,11 +6,13 @@ import swaggerUi from 'swagger-ui-express';
 import mongoose from 'mongoose';
 import cors from 'cors'
 
+
 // Get access to the museums controller
 import museumsController from './controllers/museums.js'
 
 // Create a express instance
 let app = express();
+
 
 // Configuring express to use body-parser as middle-ware.
 app.use(bodyParser.json());
@@ -21,9 +23,12 @@ mongoose.connect(process.env.DB, {})
 
 // Cors: allow angular client http access
 app.use(cors({
-    origin: process.env.CLIENT_URL,
+    origin: [
+        'http://localhost:4200', // Local development URL
+        'https://museum-backend-llx2.vercel.app' // Production frontend URL
+    ],
     methods: "GET,POST,PUT,DELETE,HEAD,OPTIONS", 
-    credentials: true, 
+    credentials: false, 
     allowedHeaders: 'Content-Type, Authorization'
 }));
 
@@ -46,6 +51,12 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openapiSpecification));
 
 // Configure routing to the correct controller
 app.use('/api/v1/museums', museumsController);
+
+
+app.use('*', (req, res) => {
+    res.sendFile(`${__dirname}/public/index.html`);
+});
+
 
 app.listen(3000, () => {
     console.log("Express api running on port 3000");
