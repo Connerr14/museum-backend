@@ -5,6 +5,7 @@ import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import mongoose from 'mongoose';
 import cors from 'cors'
+import path from 'path'
 
 
 // Get access to the museums controller
@@ -17,16 +18,17 @@ let app = express();
 // Configuring express to use body-parser as middle-ware.
 app.use(bodyParser.json());
 
+// Get public path for angular client app
+const __dirname = path.resolve();
+app.use(express.static(`${__dirname}/public`));
+
 mongoose.connect(process.env.DB, {})
 .then((res) => console.log('Connected to MongoDB'))
 .catch((err) => console.log(`Connection Failure: ${err}`))
 
 // Cors: allow angular client http access
 app.use(cors({
-    origin: [
-        'http://localhost:4200',
-        'https://museum-backend-llx2.vercel.app'
-    ],
+    origin:  process.env.CLIENT_URL,
     methods: "GET,POST,PUT,DELETE,HEAD,OPTIONS", 
     credentials: false, 
     allowedHeaders: 'Content-Type, Authorization'
