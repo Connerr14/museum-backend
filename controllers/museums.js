@@ -1,7 +1,6 @@
 import express from "express";
 import Museum  from "../models/museum.js";
 
-// Proper
 
 // Create a express router object
 const router = express.Router();
@@ -82,6 +81,18 @@ router.get('/:id', async (req, res) => {
  *                 type: integer
  *               location:
  *                 type: string
+ *               tours:
+ *                 type: array
+ *                 items:
+ *                 type: object
+ *                   properties:
+ *                     tourName:
+ *                       type: string
+ *                     tourGuide:
+ *                       type: string
+ *                     duration:
+ *                       type: number
+ *                       format: float
  *     responses:
  *       201:
  *         description: Resource created
@@ -130,6 +141,18 @@ router.post('/', async (req, res) => {
  *                 type: integer
  *               location:
  *                 type: string
+ *               tours:
+ *                 type: array
+ *                 items:
+ *                 type: object
+ *                   properties:
+ *                     tourName:
+ *                       type: string
+ *                     tourGuide:
+ *                       type: string
+ *                     duration:
+ *                       type: number
+ *                       format: float
  *     responses:
  *       204:
  *         description: Resource created
