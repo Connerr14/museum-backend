@@ -17,15 +17,12 @@ const museumSchema = mongoose.Schema ({
     tours: [{
         tourName: {
             type: String,
-            required: true
         },
         tourGuide: {
             type: String,
-            required: true
         },
         duration: {
             type: Number,
-            required: true
         }
     }]
 });
